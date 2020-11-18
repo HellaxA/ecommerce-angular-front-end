@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
-import { CartItem } from '../common/cart-item';
+import {Injectable} from '@angular/core';
+import {Subject} from 'rxjs';
+import {CartItem} from '../common/cart-item';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,8 @@ export class CartService {
 
   totalQuantity: Subject<number> = new Subject<number>();
 
-  constructor() { }
+  constructor() {
+  }
 
   addToCart(theCartItem: CartItem) {
     let alreadyExistsInCart: boolean = false;
@@ -41,6 +42,7 @@ export class CartService {
 
 
   }
+
   computeCartTotals() {
     let totalPriceValue: number = 0;
     let totalQuantityValue: number = 0;
@@ -78,6 +80,7 @@ export class CartService {
       this.computeCartTotals();
     }
   }
+
   remove(theCartItem: CartItem) {
     const cartItemIndex = this.cartItems.findIndex(tempCartItem => tempCartItem.id === theCartItem.id);
 

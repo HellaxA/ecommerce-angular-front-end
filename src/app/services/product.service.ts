@@ -1,9 +1,9 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Product } from '../common/product';
-import { map } from 'rxjs/operators';
-import { ProductCategory } from '../common/product-category';
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
+import {Product} from '../common/product';
+import {map} from 'rxjs/operators';
+import {ProductCategory} from '../common/product-category';
 
 @Injectable({
   providedIn: 'root'
@@ -15,11 +15,12 @@ export class ProductService {
 
   private baseCategoryUrl = 'http://localhost:8080/api/product-category';
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {
+  }
 
   getProductListPaginate(thePageNumber: number,
-    thePageSize: number,
-    theCategoryId: number): Observable<GetResponseProducts> {
+                         thePageSize: number,
+                         theCategoryId: number): Observable<GetResponseProducts> {
 
     //build url based on category id
     const searchUrl = `${this.baseProductsUrl}/search/findByCategoryId?id=${theCategoryId}` +
@@ -61,13 +62,13 @@ export class ProductService {
   }
 
   searchProductsPaginate(thePageNumber: number,
-    thePageSize: number,
-    theKeyword: string): Observable<GetResponseProducts> {
+                         thePageSize: number,
+                         theKeyword: string): Observable<GetResponseProducts> {
 
     //build url based on keyWord, pageSize, pageNumber
     const searchUrl = `${this.baseProductsUrl}/search/findByNameContaining?name=${theKeyword}` +
       `&page=${thePageNumber}&size=${thePageSize}`;
-    
+
     return this.httpClient.get<GetResponseProducts>(searchUrl);
   }
 }
